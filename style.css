@@ -1,0 +1,86 @@
+
+:root {
+    --backgroundColor: rgb(227, 227, 227);
+    --secondaryColor: rgb(48, 144, 63);
+}
+
+@font-face {
+    font-family: 'Tommy';
+    src: url('Tommy.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: var(--backgroundColor);
+    font-family: "Tommy", Arial;
+}
+
+.titleContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.6rem;
+    user-select: none;
+}
+
+#mainTitle h1 span {
+    color: var(--secondaryColor);
+    text-shadow: 0px 0px 4px var(--secondaryColor);
+}
+
+hr {
+    width: 95%;
+    border: solid 3px rgba(163, 163, 163, 0.82);
+    border-radius: 1000000px;
+}
+
+#optionsParentContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#optionsParentContainer * {
+    margin: 10px;
+}
+
+#selectionType {
+    font-family: "Tommy", Arial;
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
+#selectionTypeLabel {
+    font-size: 1.5rem;
+}
+
+#pageInput, #numberInput {
+    font-family: "Tommy", Arial;
+    font-size: 1.5rem;
+    width: max(20%, 100%);
+    text-align: center;
+    box-shadow: 0px 0px 4px rgb(0, 0, 0, 0.5);
+    padding: 20px;
+}
+
+#selectContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#surahSelect {
+    font-family: "Tommy", Arial;
+    font-size: 1.5rem;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
