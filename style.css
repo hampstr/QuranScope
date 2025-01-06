@@ -66,6 +66,7 @@ hr {
     text-align: center;
     box-shadow: 0px 0px 4px rgb(0, 0, 0, 0.5);
     padding: 20px;
+    border-radius: 20px;
 }
 
 #selectContainer {
@@ -83,4 +84,21 @@ hr {
     width: 100%;
     padding: 20px;
     text-align: center;
+}
+
+#pageViewContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#pageViewContainer h1 {
+    color: rgb(233, 30, 30);
+    padding: 10px;
+    background-color: rgba(144, 144, 144, 0.49);
+    border-radius: 10px;
+    font-size: 2rem;
+    text-shadow: 0px 0px 2px rgb(233, 30, 30);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.567);
 }
