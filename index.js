@@ -4,6 +4,9 @@ let selectionType = document.getElementById('selectionType')
 let currentInput;
 let currentPage;
 let pageViewContainer = document.getElementById('pageViewContainer')
+let previousButton;
+let nextButton;
+
 const surahs = {
     1: ["Al-Fatihah", 1],
     2: ["Al-Baqarah", 2],
@@ -120,19 +123,52 @@ const surahs = {
     113: ["Al-Falaq", 604],
     114: ["An-Nas", 604]
 };
-  
-
-
-
-
-
 updateSelect()
+
+function getControlButtons() {
+    previousButton = document.getElementById("previousButton");
+    nextButton = document.getElementById("nextButton");
+    previousButton.addEventListener('click', () => {
+        currentPage--
+        console.log("previousButton clicked")
+        updatePage()
+    })
+    nextButton.addEventListener('click', () => {
+        currentPage++
+        console.log("nextButton clicked")
+        updatePage()
+    })
+}
+
+function updateControlButtons() {
+    previousButton.disabled = false
+    nextButton.disabled = false
+    if (currentPage == 1) {
+        previousButton.disabled = true;
+    }
+    if (currentPage == 604) {
+        nextButton.disabled = true;
+    }
+    
+}
 
 selectionType.addEventListener('change', () => {
     let selectedValue = selectionType.value 
     console.log(selectedValue)
     updateSelect()
 })
+
+function getCurrentPage() {
+    if (currentInput.id == "pageInput") {
+        currentPage = currentInput.value
+    }
+    if (currentInput.id == "surahSelect") {
+        currentPage = surahs[currentInput.value][1]
+    }
+    if (currentInput.id == "numberInput") {
+        currentPage = currentInput.value
+    }
+}
 
 function updateSelect() {
     select.innerHTML = ""
@@ -145,6 +181,7 @@ function updateSelect() {
         pageInput.placeholder = "Enter a page number here..."
         select.appendChild(pageInput)
         pageInput.addEventListener("change", () => {
+            getCurrentPage()
             updatePage()
         })
         currentInput = pageInput
@@ -163,6 +200,7 @@ function updateSelect() {
         }
         select.appendChild(surahSelect)
         surahSelect.addEventListener("change", () => {
+            getCurrentPage()
             updatePage()
         })
         currentInput = surahSelect
@@ -177,6 +215,7 @@ function updateSelect() {
         numberInput.placeholder = "Enter a surah number here..."
         select.appendChild(numberInput)
         numberInput.addEventListener("change", () => {
+            getCurrentPage()
             updatePage()
         })
         currentInput = numberInput
@@ -187,25 +226,25 @@ function updateSelect() {
 
 function updatePage() {
     pageViewContainer.innerHTML = ""
-    if (currentInput.id == "pageInput") {
-        currentPage = currentInput.value
-    }
-
-    if (currentInput.id == "surahSelect") {
-        currentPage = surahs[currentInput.value][1]
-    }
-
-    if (currentInput.id == "numberInput") {
-        currentPage = currentInput.value
-    }
-
+    let surahNumber = document.createElement("h2")
+    surahNumber.innerText = `Surah ${surahs[currentPage][0]} (${surahs[currentPage][1]}), Page number ${currentPage}`
+    pageViewContainer.appendChild(surahNumber)
+    let buttonsContainer = document.createElement("div")    
+    let previousButton = document.createElement("button")
+    previousButton.innerText = "<"
+    previousButton.id = "previousButton"
+    let nextButton = document.createElement("button")
+    nextButton.innerText = ">"
+    nextButton.id = "nextButton"
+    buttonsContainer.appendChild(previousButton)
+    buttonsContainer.appendChild(nextButton)
+    buttonsContainer.id = "buttonsContainer"
     let page = document.createElement("img")
     page.src = `fullQuran/${currentPage}.jpg`
     page.alt = `Page ${currentPage}`
-    page.style.maxWidth = "calc(50%)"
-    page.style.border = "10px solid rgb(0, 0, 0)"
-    page.style.borderRadius = "50px"
-    page.style.boxShadow = "0px 0px 5px rgba(0, 0, 0, 0.68)"
-    page.style.margin = "10px"
+    page.id="currentPage"
     pageViewContainer.appendChild(page)
+    pageViewContainer.appendChild(buttonsContainer)
+    getControlButtons()
+    updateControlButtons()
 }
