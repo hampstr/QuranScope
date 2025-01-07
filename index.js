@@ -164,12 +164,27 @@ selectionType.addEventListener('change', () => {
 
 function getCurrentPage() {
     if (currentInput.id == "pageInput") {
+        if (currentInput.value > 604) {
+            currentInput.value = 604
+        }
+        if (currentInput.value < 1) {
+            currentInput.value = 1
+        }
+        
         currentPage = currentInput.value
     }
+
     if (currentInput.id == "surahSelect") {
         currentPage = surahs[currentInput.value][1]
     }
+
     if (currentInput.id == "numberInput") {
+        if (currentInput.value > 114) {
+            currentInput.value = 114
+        }
+        if (currentInput.value < 1) {
+            currentInput.value = 1
+        }
         currentPage = currentInput.value
     }
 }
@@ -215,7 +230,7 @@ function updateSelect() {
         numberInput.id = "numberInput"
         numberInput.type = "number"
         numberInput.min = 1
-        numberInput.max = 604
+        numberInput.max = 114
         numberInput.placeholder = "Enter a surah number here..."
         select.appendChild(numberInput)
         numberInput.addEventListener("change", () => {
