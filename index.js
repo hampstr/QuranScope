@@ -185,7 +185,7 @@ function getCurrentPage() {
         if (currentInput.value < 1) {
             currentInput.value = 1
         }
-        currentPage = currentInput.value
+        currentPage = surahs[currentInput.value][1]
     }
 }
 
