@@ -123,6 +123,10 @@ const surahs = {
     113: ["Al-Falaq", 604],
     114: ["An-Nas", 604]
 };
+
+
+
+
 updateSelect()
 
 function getControlButtons() {
@@ -227,7 +231,9 @@ function updateSelect() {
 function updatePage() {
     pageViewContainer.innerHTML = ""
     let surahNumber = document.createElement("h2")
-    surahNumber.innerText = `Surah ${surahs[currentPage][0]} (${surahs[currentPage][1]}), Page number ${currentPage}`
+
+    surahNumber.innerText = `Page number ${currentPage}`
+
     pageViewContainer.appendChild(surahNumber)
     let buttonsContainer = document.createElement("div")    
     let previousButton = document.createElement("button")
@@ -240,6 +246,8 @@ function updatePage() {
     buttonsContainer.appendChild(nextButton)
     buttonsContainer.id = "buttonsContainer"
     let page = document.createElement("img")
+
+
     page.src = `fullQuran/${currentPage}.jpg`
     page.alt = `Page ${currentPage}`
     page.id="currentPage"
